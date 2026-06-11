@@ -306,6 +306,81 @@ opencode mcp logout calculator-demo # Remove credentials
 
 ---
 
+## Codex CLI Setup
+
+[Codex](https://github.com/openai/codex) is OpenAI's terminal-based AI coding agent with built-in MCP support. It uses **TOML** configuration at `~/.codex/config.toml`.
+
+### Via CLI (Easiest)
+
+```bash
+codex mcp add calculator-demo -- mcp-anything serve /ABSOLUTE/PATH/TO/mcp-servers/calculator-demo
+codex mcp add todo-demo -- mcp-anything serve /ABSOLUTE/PATH/TO/mcp-servers/todo-demo
+codex mcp add weather-demo -- mcp-anything serve /ABSOLUTE/PATH/TO/mcp-servers/weather-demo
+codex mcp add textutils-demo -- mcp-anything serve /ABSOLUTE/PATH/TO/mcp-servers/textutils-demo
+```
+
+### Via config.toml
+
+Edit `~/.codex/config.toml` (global) or `.codex/config.toml` (project-scoped):
+
+```toml
+[mcp_servers.calculator-demo]
+command = "mcp-anything"
+args = ["serve", "/ABSOLUTE/PATH/TO/mcp-servers/calculator-demo"]
+enabled = true
+
+[mcp_servers.todo-demo]
+command = "mcp-anything"
+args = ["serve", "/ABSOLUTE/PATH/TO/mcp-servers/todo-demo"]
+enabled = true
+
+[mcp_servers.weather-demo]
+command = "mcp-anything"
+args = ["serve", "/ABSOLUTE/PATH/TO/mcp-servers/weather-demo"]
+enabled = true
+
+[mcp_servers.textutils-demo]
+command = "mcp-anything"
+args = ["serve", "/ABSOLUTE/PATH/TO/mcp-servers/textutils-demo"]
+enabled = true
+```
+
+### Server Options
+
+| Key | Description |
+|-----|-------------|
+| `command` | Command to start the server (required) |
+| `args` | Array of arguments |
+| `env` | Map of static environment variables |
+| `env_vars` | List of forwarded env var names |
+| `enabled` | Enable on startup (`true`/`false`) |
+| `enabled_tools` | Allow-list of tool names |
+| `disabled_tools` | Deny-list of tool names |
+| `default_tools_approval_mode` | `"auto"`, `"prompt"`, or `"approve"` |
+| `startup_timeout_sec` | Seconds to wait for startup (default: 10) |
+| `tool_timeout_sec` | Seconds to wait per tool call (default: 60) |
+
+### Use the Demos in Codex
+
+Just ask in the Codex TUI or `codex exec`:
+
+```
+Use the calculator to add 42 and 58
+Add "Buy milk" to my todo list
+What's the weather in Austin?
+```
+
+### Managing MCP Servers
+
+```bash
+codex mcp list                    # List configured servers
+codex mcp add <name> -- <cmd>     # Add a new server
+codex mcp update <name> -- <cmd>  # Update a server
+codex mcp login <name>            # OAuth login (for remote servers)
+```
+
+---
+
 ## Workshop Flow
 
 This project powers **Module 4** of the RGV AI Coalition *LLM Basics + MCP* workshop:
