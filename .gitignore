@@ -9,3 +9,5 @@ mcp-servers/*/.venv/
 .DS_Store
 dist/
 *.log
+._*
+*.pyc
