@@ -230,6 +230,82 @@ pi> mcp({ server: "weather-demo" })
 
 ---
 
+## OpenCode CLI Setup
+
+[OpenCode](https://opencode.ai) is an open-source terminal-based AI coding agent with built-in MCP support. Configure it to use the demo MCP servers.
+
+### Configure the Demo MCP Servers
+
+Add to `~/.config/opencode/opencode.json` (global) or `opencode.json` (project root):
+
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "calculator-demo": {
+      "type": "local",
+      "command": ["mcp-anything", "serve", "/ABSOLUTE/PATH/TO/mcp-servers/calculator-demo"],
+      "enabled": true
+    },
+    "todo-demo": {
+      "type": "local",
+      "command": ["mcp-anything", "serve", "/ABSOLUTE/PATH/TO/mcp-servers/todo-demo"],
+      "enabled": true
+    },
+    "weather-demo": {
+      "type": "local",
+      "command": ["mcp-anything", "serve", "/ABSOLUTE/PATH/TO/mcp-servers/weather-demo"],
+      "enabled": true
+    },
+    "textutils-demo": {
+      "type": "local",
+      "command": ["mcp-anything", "serve", "/ABSOLUTE/PATH/TO/mcp-servers/textutils-demo"],
+      "enabled": true
+    }
+  }
+}
+```
+
+Server options:
+
+| Field | Description |
+|-------|-------------|
+| `command` | Command + args as an array (required for local) |
+| `type` | `"local"` for stdio servers |
+| `enabled` | Enable on startup (default: false) |
+| `timeout` | Fetch timeout in ms (default: 5000) |
+| `environment` | Optional env variables for the server |
+
+### Use the Demos in OpenCode
+
+Just ask in the OpenCode TUI or `opencode run`:
+
+```
+Use the calculator to add 42 and 58
+Use the todo tool to add "Buy milk" to my list
+Check the weather in Austin
+```
+
+### Managing MCP Servers
+
+```bash
+opencode mcp list              # List configured MCP servers
+opencode mcp auth calculator-demo   # Authenticate (if needed)
+opencode mcp logout calculator-demo # Remove credentials
+```
+
+### Config Precedence
+
+| Priority | Location |
+|----------|----------|
+| Base | Remote org defaults (`.well-known/opencode`) |
+| Global | `~/.config/opencode/opencode.json` |
+| Env | `OPENCODE_CONFIG` env var path |
+| Project | `./opencode.json` (highest standard) |
+| Inline | `OPENCODE_CONFIG_CONTENT` env var |
+
+---
+
 ## Workshop Flow
 
 This project powers **Module 4** of the RGV AI Coalition *LLM Basics + MCP* workshop:
