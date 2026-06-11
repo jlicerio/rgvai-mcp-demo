@@ -149,101 +149,84 @@ The LLM calls your local tools through MCP. It went from "brain in a jar" to act
 
 ---
 
-## Raspberry Pi Setup
+## Pi (pi.dev) Coding Agent Setup
 
-This demo runs great on a Raspberry Pi (3B+ or newer, Raspberry Pi OS). A Pi makes an excellent **dedicated MCP server station** — always on, low power, serving tools to your main machine over the network.
+[Pi](https://pi.dev) is a terminal-based AI coding agent that supports MCP through the `pi-mcp-adapter` extension. Here's how to connect the demo MCP servers to Pi.
 
-### Install on a Pi
-
-```bash
-# Install Python 3.10+ (Pi OS Lite works)
-sudo apt update && sudo apt install -y python3 python3-pip
-
-# Install mcp-anything
-pip3 install mcp-anything
-
-# Clone the demo
-git clone https://github.com/jlicerio/rgvai-mcp-demo.git
-cd rgvai-mcp-demo
-
-# Generate MCP servers (this runs fine on a Pi)
-python3 -m pip install mcp uvicorn
-node bin/generate-all.js
-```
-
-### Run the MCP Servers on a Pi (Remote Setup)
-
-For the workshop, one Pi can serve MCP tools to every student's laptop:
+### Install pi-mcp-adapter
 
 ```bash
-# On the Pi — start the demo servers with HTTP transport
-# Each gets a unique port
-cd ~/rgvai-mcp-demo
+# Via Pi's built-in package manager (recommended)
+pi install npm:pi-mcp-adapter
 
-mcp-anything serve ./mcp-servers/calculator-demo --port 8101 &
-mcp-anything serve ./mcp-servers/todo-demo --port 8102 &
-mcp-anything serve ./mcp-servers/weather-demo --port 8103 &
-mcp-anything serve ./mcp-servers/textutils-demo --port 8104 &
+# Then restart Pi
 ```
 
-### Connect to a Remote Pi from Your Laptop
+The adapter auto-detects MCP config files at `~/.config/mcp/mcp.json`, `.mcp.json`, or any Cursor/Claude Code configs. If nothing is found, run `/mcp setup` inside Pi to scaffold one.
 
-Students configure their MCP client to point to the Pi's IP address and HTTP port. This works with any MCP client that supports URL-based server config:
+### Configure the Demo MCP Servers
+
+Create or edit `~/.pi/agent/mcp.json` (or `.mcp.json` in your project directory):
 
 ```json
 {
+  "settings": {
+    "directTools": true
+  },
   "mcpServers": {
     "calculator-demo": {
-      "url": "http://192.168.1.PI_IP:8101/mcp"
+      "command": "mcp-anything",
+      "args": ["serve", "/ABSOLUTE/PATH/TO/mcp-servers/calculator-demo"]
     },
     "todo-demo": {
-      "url": "http://192.168.1.PI_IP:8102/mcp"
+      "command": "mcp-anything",
+      "args": ["serve", "/ABSOLUTE/PATH/TO/mcp-servers/todo-demo"]
     },
     "weather-demo": {
-      "url": "http://192.168.1.PI_IP:8103/mcp"
+      "command": "mcp-anything",
+      "args": ["serve", "/ABSOLUTE/PATH/TO/mcp-servers/weather-demo"]
     },
     "textutils-demo": {
-      "url": "http://192.168.1.PI_IP:8104/mcp"
+      "command": "mcp-anything",
+      "args": ["serve", "/ABSOLUTE/PATH/TO/mcp-servers/textutils-demo"]
     }
   }
 }
 ```
 
-> **Tip:** Use a `.local` hostname (`raspberrypi.local`) or Tailscale IP so you don't need static IPs.
+With `directTools: true`, each MCP tool becomes a first-class Pi command.
 
-### Auto-Start on Boot (Pi as Appliance)
+### Use the Demos in Pi
 
-```bash
-# Create a systemd service
-sudo tee /etc/systemd/system/mcp-demo.service << 'EOF'
-[Unit]
-Description=RGV AI MCP Demo Suite
-After=network.target
+Once configured, just ask Pi:
 
-[Service]
-Type=simple
-User=pi
-WorkingDirectory=/home/pi/rgvai-mcp-demo
-ExecStart=/usr/bin/python3 -m mcp_anything serve ./mcp-servers/calculator-demo --port 8101
-Restart=always
-
-[Install]
-WantedBy=multi-user.target
-EOF
-
-sudo systemctl enable mcp-demo
-sudo systemctl start mcp-demo
+```
+pi> add 42 and 58 using the calculator
+pi> add "Buy milk" to my todo list, then show me what's pending
+pi> what's the weather in Austin?
+pi> check if "racecar" is a palindrome
 ```
 
-### Why Use a Pi?
+Pi's adapter is **token-efficient** — it uses a single proxy tool (~200 tokens) instead of loading all tool definitions upfront. Servers are **lazy** by default (connect on first use, disconnect after idle timeout).
 
-| Reason | Detail |
-|--------|--------|
-| **Portable** | Take the whole demo in your pocket — great for workshops |
-| **Low power** | Runs 24/7 on 5W — always-on MCP server |
-| **Network shared** | One Pi serves tools to everyone on the same LAN |
-| **ARM-native** | MCP, Python, mcp-anything all work on ARM64 |
-| **No install on laptops** | Students just add a URL to their client config — nothing to install |
+### Proxy Mode
+
+If `directTools` is off, use the `mcp` proxy tool:
+
+```
+pi> mcp({ tool: "add", args: '{"a": 5, "b": 3}' })
+pi> mcp({ search: "calculator" })
+pi> mcp({ server: "weather-demo" })
+```
+
+### Config File Locations (Precedence)
+
+| File | Scope |
+|------|-------|
+| `~/.config/mcp/mcp.json` | User-global (shared) |
+| `~/.pi/agent/mcp.json` | Pi-specific global |
+| `.mcp.json` | Project-local (shared) |
+| `.pi/mcp.json` | Pi project-specific |
 
 ---
 
