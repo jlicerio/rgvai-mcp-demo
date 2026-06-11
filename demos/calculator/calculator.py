@@ -38,8 +38,10 @@ def record_operation(op, a, b, result):
 
 def handle_args(args):
     b = None
+    a = None
     try:
-        a = float(args.a)
+        if hasattr(args, "a") and args.a is not None:
+            a = float(args.a)
         if hasattr(args, "b") and args.b is not None:
             b = float(args.b)
     except ValueError as e:
@@ -47,7 +49,7 @@ def handle_args(args):
         sys.exit(1)
 
     if args.command == "add":
-        if b is None:
+        if a is None or b is None:
             print("Error: add requires two arguments", file=sys.stderr)
             sys.exit(1)
         result = a + b
