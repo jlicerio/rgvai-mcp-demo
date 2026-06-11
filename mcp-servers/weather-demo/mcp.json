@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "weather-demo": {
+      "command": "mcp-anything",
+      "args": [
+        "serve",
+        "/Users/selfsim/projects/mcp-demo/mcp-servers/weather-demo"
+      ]
+    }
+  }
+}

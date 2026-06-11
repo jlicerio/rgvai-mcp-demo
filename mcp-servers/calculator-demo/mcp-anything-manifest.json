@@ -1,0 +1,664 @@
+{
+  "version": "0.2.0",
+  "pipeline_mode": "legacy",
+  "codebase_path": "/Users/selfsim/projects/mcp-demo/demos/calculator",
+  "output_dir": "/Users/selfsim/projects/mcp-demo/mcp-servers/calculator-demo",
+  "server_name": "calculator-demo",
+  "completed_phases": [
+    "analyze",
+    "design",
+    "implement",
+    "document",
+    "package"
+  ],
+  "analysis": {
+    "app_name": "calculator-demo",
+    "app_description": "MCP server for calculator-demo (CLI application, with 5 capabilities)",
+    "languages": [
+      "python"
+    ],
+    "files": [
+      {
+        "path": "calculator.py",
+        "language": "python",
+        "size_bytes": 4394,
+        "line_count": 155,
+        "is_entry_point": true,
+        "is_api_surface": true
+      }
+    ],
+    "ipc_mechanisms": [
+      {
+        "ipc_type": "cli",
+        "confidence": 0.9,
+        "evidence": [
+          "calculator.py: argparse import",
+          "calculator.py: ArgumentParser usage",
+          "calculator.py: add_argument call",
+          "calculator.py: sys.argv access"
+        ],
+        "details": {}
+      }
+    ],
+    "capabilities": [
+      {
+        "name": "clear",
+        "description": "Clear calculation history",
+        "category": "cli_command",
+        "parameters": [
+          {
+            "name": "args",
+            "type": "string",
+            "description": "Arguments for clear",
+            "required": false,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "string",
+        "source_file": "calculator.py",
+        "source_function": "",
+        "source_class": "",
+        "init_params": [],
+        "ipc_type": "cli",
+        "http_method": null,
+        "http_path": null
+      },
+      {
+        "name": "history",
+        "description": "Show calculation history",
+        "category": "cli_command",
+        "parameters": [
+          {
+            "name": "args",
+            "type": "string",
+            "description": "Arguments for history",
+            "required": false,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "string",
+        "source_file": "calculator.py",
+        "source_function": "",
+        "source_class": "",
+        "init_params": [],
+        "ipc_type": "cli",
+        "http_method": null,
+        "http_path": null
+      },
+      {
+        "name": "sqrt",
+        "description": "Square root",
+        "category": "cli_command",
+        "parameters": [
+          {
+            "name": "a",
+            "type": "string",
+            "description": "Number",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "string",
+        "source_file": "calculator.py",
+        "source_function": "",
+        "source_class": "",
+        "init_params": [],
+        "ipc_type": "cli",
+        "http_method": null,
+        "http_path": null
+      },
+      {
+        "name": "record_operation",
+        "description": "Record operation",
+        "category": "general",
+        "parameters": [
+          {
+            "name": "op",
+            "type": "string",
+            "description": "",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          },
+          {
+            "name": "a",
+            "type": "string",
+            "description": "",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          },
+          {
+            "name": "b",
+            "type": "string",
+            "description": "",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          },
+          {
+            "name": "result",
+            "type": "string",
+            "description": "",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "string",
+        "source_file": "calculator.py",
+        "source_function": "record_operation",
+        "source_class": "",
+        "init_params": [],
+        "ipc_type": "cli",
+        "http_method": null,
+        "http_path": null
+      },
+      {
+        "name": "save_history",
+        "description": "Save history",
+        "category": "file_ops",
+        "parameters": [
+          {
+            "name": "entries",
+            "type": "string",
+            "description": "",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "string",
+        "source_file": "calculator.py",
+        "source_function": "save_history",
+        "source_class": "",
+        "init_params": [],
+        "ipc_type": "cli",
+        "http_method": null,
+        "http_path": null
+      }
+    ],
+    "primary_ipc": "cli",
+    "entry_points": [
+      "calculator.py"
+    ],
+    "raw_evidence": {}
+  },
+  "design": {
+    "server_name": "calculator-demo",
+    "server_description": "MCP server for calculator-demo (CLI application, with 5 capabilities)",
+    "tools": [
+      {
+        "name": "run_calculator_demo",
+        "description": "Run calculator-demo with the given command-line arguments",
+        "parameters": [
+          {
+            "name": "args",
+            "type": "string",
+            "description": "Command-line arguments to pass to calculator-demo (e.g. a URL or flags)",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "string",
+        "module": "general",
+        "ipc_type": "cli",
+        "implementation_hint": "Run: python calculator.py <args>",
+        "generation_status": "ready",
+        "generation_notes": "Invokes the detected CLI entry point.",
+        "manual_steps": [],
+        "impl": {
+          "strategy": "cli_subcommand",
+          "cli_subcommand": "",
+          "cli_entry": "",
+          "python_module": "",
+          "python_function": "",
+          "python_import_path": "",
+          "python_class": "",
+          "python_init_params": [],
+          "http_method": "",
+          "http_path": "",
+          "grpc_service": "",
+          "grpc_method": "",
+          "grpc_proto_module": "",
+          "arg_mapping": {
+            "args": {
+              "style": "passthrough"
+            }
+          }
+        }
+      },
+      {
+        "name": "clear",
+        "description": "Clear calculation history",
+        "parameters": [
+          {
+            "name": "args",
+            "type": "string",
+            "description": "Arguments for clear",
+            "required": false,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "string",
+        "module": "cli_command",
+        "ipc_type": "cli",
+        "implementation_hint": "Source: calculator.py",
+        "generation_status": "ready",
+        "generation_notes": "Invokes the detected CLI entry point.",
+        "manual_steps": [],
+        "impl": {
+          "strategy": "cli_subcommand",
+          "cli_subcommand": "clear",
+          "cli_entry": "",
+          "python_module": "",
+          "python_function": "",
+          "python_import_path": "",
+          "python_class": "",
+          "python_init_params": [],
+          "http_method": "",
+          "http_path": "",
+          "grpc_service": "",
+          "grpc_method": "",
+          "grpc_proto_module": "",
+          "arg_mapping": {
+            "args": {
+              "style": "passthrough"
+            }
+          }
+        }
+      },
+      {
+        "name": "history",
+        "description": "Show calculation history",
+        "parameters": [
+          {
+            "name": "args",
+            "type": "string",
+            "description": "Arguments for history",
+            "required": false,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "string",
+        "module": "cli_command",
+        "ipc_type": "cli",
+        "implementation_hint": "Source: calculator.py",
+        "generation_status": "ready",
+        "generation_notes": "Invokes the detected CLI entry point.",
+        "manual_steps": [],
+        "impl": {
+          "strategy": "cli_subcommand",
+          "cli_subcommand": "history",
+          "cli_entry": "",
+          "python_module": "",
+          "python_function": "",
+          "python_import_path": "",
+          "python_class": "",
+          "python_init_params": [],
+          "http_method": "",
+          "http_path": "",
+          "grpc_service": "",
+          "grpc_method": "",
+          "grpc_proto_module": "",
+          "arg_mapping": {
+            "args": {
+              "style": "passthrough"
+            }
+          }
+        }
+      },
+      {
+        "name": "sqrt",
+        "description": "Square root",
+        "parameters": [
+          {
+            "name": "a",
+            "type": "string",
+            "description": "Number",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "string",
+        "module": "cli_command",
+        "ipc_type": "cli",
+        "implementation_hint": "Source: calculator.py",
+        "generation_status": "ready",
+        "generation_notes": "Invokes the detected CLI entry point.",
+        "manual_steps": [],
+        "impl": {
+          "strategy": "cli_subcommand",
+          "cli_subcommand": "sqrt",
+          "cli_entry": "",
+          "python_module": "",
+          "python_function": "",
+          "python_import_path": "",
+          "python_class": "",
+          "python_init_params": [],
+          "http_method": "",
+          "http_path": "",
+          "grpc_service": "",
+          "grpc_method": "",
+          "grpc_proto_module": "",
+          "arg_mapping": {
+            "a": {
+              "style": "positional",
+              "position": 0
+            }
+          }
+        }
+      },
+      {
+        "name": "record_operation",
+        "description": "Record operation",
+        "parameters": [
+          {
+            "name": "op",
+            "type": "string",
+            "description": "",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          },
+          {
+            "name": "a",
+            "type": "string",
+            "description": "",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          },
+          {
+            "name": "b",
+            "type": "string",
+            "description": "",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          },
+          {
+            "name": "result",
+            "type": "string",
+            "description": "",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "string",
+        "module": "general",
+        "ipc_type": "cli",
+        "implementation_hint": "Source: calculator.py::record_operation",
+        "generation_status": "ready",
+        "generation_notes": "Invokes the detected CLI entry point.",
+        "manual_steps": [],
+        "impl": {
+          "strategy": "cli_function",
+          "cli_subcommand": "",
+          "cli_entry": "calculator.py",
+          "python_module": "",
+          "python_function": "record_operation",
+          "python_import_path": "",
+          "python_class": "",
+          "python_init_params": [],
+          "http_method": "",
+          "http_path": "",
+          "grpc_service": "",
+          "grpc_method": "",
+          "grpc_proto_module": "",
+          "arg_mapping": {
+            "op": {
+              "style": "positional",
+              "position": 0
+            },
+            "a": {
+              "style": "positional",
+              "position": 1
+            },
+            "b": {
+              "style": "positional",
+              "position": 2
+            },
+            "result": {
+              "style": "positional",
+              "position": 3
+            }
+          }
+        }
+      },
+      {
+        "name": "save_history",
+        "description": "Save history",
+        "parameters": [
+          {
+            "name": "entries",
+            "type": "string",
+            "description": "",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "string",
+        "module": "file_ops",
+        "ipc_type": "cli",
+        "implementation_hint": "Source: calculator.py::save_history",
+        "generation_status": "ready",
+        "generation_notes": "Invokes the detected CLI entry point.",
+        "manual_steps": [],
+        "impl": {
+          "strategy": "cli_function",
+          "cli_subcommand": "",
+          "cli_entry": "calculator.py",
+          "python_module": "",
+          "python_function": "save_history",
+          "python_import_path": "",
+          "python_class": "",
+          "python_init_params": [],
+          "http_method": "",
+          "http_path": "",
+          "grpc_service": "",
+          "grpc_method": "",
+          "grpc_proto_module": "",
+          "arg_mapping": {
+            "entries": {
+              "style": "positional",
+              "position": 0
+            }
+          }
+        }
+      }
+    ],
+    "resources": [
+      {
+        "uri": "app://calculator-demo/status",
+        "name": "calculator_demo_status",
+        "description": "Current status and version of calculator-demo",
+        "mime_type": "application/json",
+        "resource_type": "status"
+      },
+      {
+        "uri": "app://calculator-demo/commands",
+        "name": "calculator_demo_commands",
+        "description": "Available commands and tools in calculator-demo",
+        "mime_type": "application/json",
+        "resource_type": "commands"
+      },
+      {
+        "uri": "docs://calculator-demo/tool-index",
+        "name": "calculator_demo_tool_index",
+        "description": "Complete index of all calculator-demo tools with parameters and usage",
+        "mime_type": "application/json",
+        "resource_type": "docs"
+      },
+      {
+        "uri": "docs://calculator-demo/cli_command",
+        "name": "calculator_demo_cli_command_docs",
+        "description": "Documentation for calculator-demo cli_command capabilities",
+        "mime_type": "application/json",
+        "resource_type": "docs"
+      },
+      {
+        "uri": "docs://calculator-demo/file_ops",
+        "name": "calculator_demo_file_ops_docs",
+        "description": "Documentation for calculator-demo file_ops capabilities",
+        "mime_type": "application/json",
+        "resource_type": "docs"
+      }
+    ],
+    "prompts": [
+      {
+        "name": "use_calculator_demo",
+        "description": "Guide for using calculator-demo tools effectively",
+        "arguments": [],
+        "template": "You have access to the calculator-demo MCP server with these tools:\n\n- clear: Clear calculation history\n- history: Show calculation history\n- sqrt: Square root\n- record_operation: Record operation\n- save_history: Save history\n\nUse the appropriate tool based on the user's request. Always check required parameters before calling a tool."
+      },
+      {
+        "name": "debug_calculator_demo",
+        "description": "Diagnose issues with calculator-demo operations",
+        "arguments": [
+          {
+            "name": "error_message",
+            "type": "string",
+            "description": "The error to diagnose",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "template": "The user encountered an error while using calculator-demo.\n\nError: {{error_message}}\n\nAvailable tools: clear, history, sqrt, record_operation, save_history\n\nDiagnose the issue and suggest which tool to use to resolve it."
+      }
+    ],
+    "tool_modules": {
+      "general": [
+        "run_calculator_demo",
+        "record_operation"
+      ],
+      "cli_command": [
+        "clear",
+        "history",
+        "sqrt"
+      ],
+      "file_ops": [
+        "save_history"
+      ]
+    },
+    "backend": {
+      "backend_type": "cli",
+      "host": "localhost",
+      "port": 0,
+      "socket_path": "",
+      "command": "python /Users/selfsim/projects/mcp-demo/demos/calculator/calculator.py",
+      "command_args": [],
+      "env_vars": {},
+      "codebase_path": "/Users/selfsim/projects/mcp-demo/demos/calculator",
+      "auth": {
+        "auth_type": "",
+        "api_key_header": "",
+        "api_key_query": "",
+        "env_var_token": "",
+        "env_var_username": "",
+        "env_var_password": ""
+      }
+    },
+    "dependencies": [
+      "mcp>=1.0"
+    ],
+    "python_requires": ">=3.10",
+    "target_install_hint": "",
+    "transport": "stdio",
+    "http_host": "0.0.0.0",
+    "http_port": 8000,
+    "enable_telemetry": false,
+    "generate_agents_md": true,
+    "tool_groups": [],
+    "composed_tools": [],
+    "discovery_endpoint": true
+  },
+  "domain_model": null,
+  "tool_spec": null,
+  "skill_bundle": null,
+  "eval_cases": null,
+  "contract_check_results": null,
+  "generated_files": [
+    "src/mcp_calculator_demo/__init__.py",
+    "src/mcp_calculator_demo/server.py",
+    "src/mcp_calculator_demo/models.py",
+    "src/mcp_calculator_demo/state.py",
+    "src/mcp_calculator_demo/backend.py",
+    "src/mcp_calculator_demo/tools/general.py",
+    "src/mcp_calculator_demo/tools/cli_command.py",
+    "src/mcp_calculator_demo/tools/file_ops.py",
+    "src/mcp_calculator_demo/tools/__init__.py",
+    "src/mcp_calculator_demo/resources.py",
+    "src/mcp_calculator_demo/prompts.py",
+    "pyproject.toml",
+    "mcp.json",
+    "README.md",
+    "AGENTS.md"
+  ],
+  "errors": [],
+  "extra_data": null
+}

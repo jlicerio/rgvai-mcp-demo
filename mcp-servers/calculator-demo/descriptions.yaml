@@ -1,0 +1,39 @@
+# Edit tool descriptions below. Run `mcp-anything generate --description` to apply.
+tools:
+  run_calculator_demo:
+    description: Run calculator-demo with the given command-line arguments
+    parameters:
+      args:
+        description: Command-line arguments to pass to calculator-demo (e.g. a URL
+          or flags)
+  clear:
+    description: Clear calculation history
+    parameters:
+      args:
+        description: Arguments for clear
+  history:
+    description: Show calculation history
+    parameters:
+      args:
+        description: Arguments for history
+  sqrt:
+    description: Square root
+    parameters:
+      a:
+        description: Number
+  record_operation:
+    description: Record operation
+    parameters:
+      op:
+        description: ''
+      a:
+        description: ''
+      b:
+        description: ''
+      result:
+        description: ''
+  save_history:
+    description: Save history
+    parameters:
+      entries:
+        description: ''

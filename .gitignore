@@ -1,0 +1,11 @@
+node_modules/
+.env
+*.pyc
+__pycache__/
+.calc_history.json
+.todos.json
+mcp-servers/*/src/__pycache__/
+mcp-servers/*/.venv/
+.DS_Store
+dist/
+*.log

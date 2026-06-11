@@ -1,0 +1,701 @@
+{
+  "version": "0.2.0",
+  "pipeline_mode": "legacy",
+  "codebase_path": "/Users/selfsim/projects/mcp-demo/demos/weather",
+  "output_dir": "/Users/selfsim/projects/mcp-demo/mcp-servers/weather-demo",
+  "server_name": "weather-demo",
+  "completed_phases": [
+    "analyze",
+    "design",
+    "implement",
+    "document",
+    "package"
+  ],
+  "analysis": {
+    "app_name": "weather-demo",
+    "app_description": "MCP server for weather-demo (CLI application, with 6 capabilities)",
+    "languages": [
+      "python"
+    ],
+    "files": [
+      {
+        "path": "weather.py",
+        "language": "python",
+        "size_bytes": 6651,
+        "line_count": 164,
+        "is_entry_point": true,
+        "is_api_surface": true
+      }
+    ],
+    "ipc_mechanisms": [
+      {
+        "ipc_type": "cli",
+        "confidence": 0.9,
+        "evidence": [
+          "weather.py: argparse import",
+          "weather.py: ArgumentParser usage",
+          "weather.py: add_argument call"
+        ],
+        "details": {}
+      }
+    ],
+    "capabilities": [
+      {
+        "name": "compare",
+        "description": "Compare weather between two cities",
+        "category": "cli_command",
+        "parameters": [
+          {
+            "name": "city1",
+            "type": "string",
+            "description": "First city",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          },
+          {
+            "name": "city2",
+            "type": "string",
+            "description": "Second city",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "string",
+        "source_file": "weather.py",
+        "source_function": "",
+        "source_class": "",
+        "init_params": [],
+        "ipc_type": "cli",
+        "http_method": null,
+        "http_path": null
+      },
+      {
+        "name": "current",
+        "description": "Show current weather for a city",
+        "category": "cli_command",
+        "parameters": [
+          {
+            "name": "city",
+            "type": "string",
+            "description": "City name",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "string",
+        "source_file": "weather.py",
+        "source_function": "",
+        "source_class": "",
+        "init_params": [],
+        "ipc_type": "cli",
+        "http_method": null,
+        "http_path": null
+      },
+      {
+        "name": "forecast",
+        "description": "Show multi-day forecast for a city",
+        "category": "cli_command",
+        "parameters": [
+          {
+            "name": "city",
+            "type": "string",
+            "description": "City name",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          },
+          {
+            "name": "days",
+            "type": "integer",
+            "description": "Number of forecast days (default: 5)",
+            "required": false,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "string",
+        "source_file": "weather.py",
+        "source_function": "",
+        "source_class": "",
+        "init_params": [],
+        "ipc_type": "cli",
+        "http_method": null,
+        "http_path": null
+      },
+      {
+        "name": "cmd_compare",
+        "description": "Cmd compare",
+        "category": "general",
+        "parameters": [
+          {
+            "name": "args",
+            "type": "Namespace",
+            "description": "",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "None",
+        "source_file": "weather.py",
+        "source_function": "cmd_compare",
+        "source_class": "",
+        "init_params": [],
+        "ipc_type": "cli",
+        "http_method": null,
+        "http_path": null
+      },
+      {
+        "name": "cmd_current",
+        "description": "Cmd current",
+        "category": "general",
+        "parameters": [
+          {
+            "name": "args",
+            "type": "Namespace",
+            "description": "",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "None",
+        "source_file": "weather.py",
+        "source_function": "cmd_current",
+        "source_class": "",
+        "init_params": [],
+        "ipc_type": "cli",
+        "http_method": null,
+        "http_path": null
+      },
+      {
+        "name": "cmd_forecast",
+        "description": "Cmd forecast",
+        "category": "general",
+        "parameters": [
+          {
+            "name": "args",
+            "type": "Namespace",
+            "description": "",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "None",
+        "source_file": "weather.py",
+        "source_function": "cmd_forecast",
+        "source_class": "",
+        "init_params": [],
+        "ipc_type": "cli",
+        "http_method": null,
+        "http_path": null
+      }
+    ],
+    "primary_ipc": "cli",
+    "entry_points": [
+      "weather.py"
+    ],
+    "raw_evidence": {}
+  },
+  "design": {
+    "server_name": "weather-demo",
+    "server_description": "MCP server for weather-demo (CLI application, with 6 capabilities)",
+    "tools": [
+      {
+        "name": "run_weather_demo",
+        "description": "Run weather-demo with the given command-line arguments",
+        "parameters": [
+          {
+            "name": "args",
+            "type": "string",
+            "description": "Command-line arguments to pass to weather-demo (e.g. a URL or flags)",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "string",
+        "module": "general",
+        "ipc_type": "cli",
+        "implementation_hint": "Run: python weather.py <args>",
+        "generation_status": "ready",
+        "generation_notes": "Invokes the detected CLI entry point.",
+        "manual_steps": [],
+        "impl": {
+          "strategy": "cli_subcommand",
+          "cli_subcommand": "",
+          "cli_entry": "",
+          "python_module": "",
+          "python_function": "",
+          "python_import_path": "",
+          "python_class": "",
+          "python_init_params": [],
+          "http_method": "",
+          "http_path": "",
+          "grpc_service": "",
+          "grpc_method": "",
+          "grpc_proto_module": "",
+          "arg_mapping": {
+            "args": {
+              "style": "passthrough"
+            }
+          }
+        }
+      },
+      {
+        "name": "compare",
+        "description": "Compare weather between two cities",
+        "parameters": [
+          {
+            "name": "city1",
+            "type": "string",
+            "description": "First city",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          },
+          {
+            "name": "city2",
+            "type": "string",
+            "description": "Second city",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "string",
+        "module": "cli_command",
+        "ipc_type": "cli",
+        "implementation_hint": "Source: weather.py",
+        "generation_status": "ready",
+        "generation_notes": "Invokes the detected CLI entry point.",
+        "manual_steps": [],
+        "impl": {
+          "strategy": "cli_subcommand",
+          "cli_subcommand": "compare",
+          "cli_entry": "",
+          "python_module": "",
+          "python_function": "",
+          "python_import_path": "",
+          "python_class": "",
+          "python_init_params": [],
+          "http_method": "",
+          "http_path": "",
+          "grpc_service": "",
+          "grpc_method": "",
+          "grpc_proto_module": "",
+          "arg_mapping": {
+            "city1": {
+              "style": "positional",
+              "position": 0
+            },
+            "city2": {
+              "style": "positional",
+              "position": 1
+            }
+          }
+        }
+      },
+      {
+        "name": "current",
+        "description": "Show current weather for a city",
+        "parameters": [
+          {
+            "name": "city",
+            "type": "string",
+            "description": "City name",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "string",
+        "module": "cli_command",
+        "ipc_type": "cli",
+        "implementation_hint": "Source: weather.py",
+        "generation_status": "ready",
+        "generation_notes": "Invokes the detected CLI entry point.",
+        "manual_steps": [],
+        "impl": {
+          "strategy": "cli_subcommand",
+          "cli_subcommand": "current",
+          "cli_entry": "",
+          "python_module": "",
+          "python_function": "",
+          "python_import_path": "",
+          "python_class": "",
+          "python_init_params": [],
+          "http_method": "",
+          "http_path": "",
+          "grpc_service": "",
+          "grpc_method": "",
+          "grpc_proto_module": "",
+          "arg_mapping": {
+            "city": {
+              "style": "positional",
+              "position": 0
+            }
+          }
+        }
+      },
+      {
+        "name": "forecast",
+        "description": "Show multi-day forecast for a city",
+        "parameters": [
+          {
+            "name": "city",
+            "type": "string",
+            "description": "City name",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          },
+          {
+            "name": "days",
+            "type": "integer",
+            "description": "Number of forecast days (default: 5)",
+            "required": false,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "string",
+        "module": "cli_command",
+        "ipc_type": "cli",
+        "implementation_hint": "Source: weather.py",
+        "generation_status": "ready",
+        "generation_notes": "Invokes the detected CLI entry point.",
+        "manual_steps": [],
+        "impl": {
+          "strategy": "cli_subcommand",
+          "cli_subcommand": "forecast",
+          "cli_entry": "",
+          "python_module": "",
+          "python_function": "",
+          "python_import_path": "",
+          "python_class": "",
+          "python_init_params": [],
+          "http_method": "",
+          "http_path": "",
+          "grpc_service": "",
+          "grpc_method": "",
+          "grpc_proto_module": "",
+          "arg_mapping": {
+            "city": {
+              "style": "positional",
+              "position": 0
+            },
+            "days": {
+              "style": "flag",
+              "flag": "--days"
+            }
+          }
+        }
+      },
+      {
+        "name": "cmd_compare",
+        "description": "Cmd compare",
+        "parameters": [
+          {
+            "name": "args",
+            "type": "Namespace",
+            "description": "",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "None",
+        "module": "general",
+        "ipc_type": "cli",
+        "implementation_hint": "Source: weather.py::cmd_compare",
+        "generation_status": "ready",
+        "generation_notes": "Invokes the detected CLI entry point.",
+        "manual_steps": [],
+        "impl": {
+          "strategy": "cli_function",
+          "cli_subcommand": "",
+          "cli_entry": "weather.py",
+          "python_module": "",
+          "python_function": "cmd_compare",
+          "python_import_path": "",
+          "python_class": "",
+          "python_init_params": [],
+          "http_method": "",
+          "http_path": "",
+          "grpc_service": "",
+          "grpc_method": "",
+          "grpc_proto_module": "",
+          "arg_mapping": {
+            "args": {
+              "style": "positional",
+              "position": 0
+            }
+          }
+        }
+      },
+      {
+        "name": "cmd_current",
+        "description": "Cmd current",
+        "parameters": [
+          {
+            "name": "args",
+            "type": "Namespace",
+            "description": "",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "None",
+        "module": "general",
+        "ipc_type": "cli",
+        "implementation_hint": "Source: weather.py::cmd_current",
+        "generation_status": "ready",
+        "generation_notes": "Invokes the detected CLI entry point.",
+        "manual_steps": [],
+        "impl": {
+          "strategy": "cli_function",
+          "cli_subcommand": "",
+          "cli_entry": "weather.py",
+          "python_module": "",
+          "python_function": "cmd_current",
+          "python_import_path": "",
+          "python_class": "",
+          "python_init_params": [],
+          "http_method": "",
+          "http_path": "",
+          "grpc_service": "",
+          "grpc_method": "",
+          "grpc_proto_module": "",
+          "arg_mapping": {
+            "args": {
+              "style": "positional",
+              "position": 0
+            }
+          }
+        }
+      },
+      {
+        "name": "cmd_forecast",
+        "description": "Cmd forecast",
+        "parameters": [
+          {
+            "name": "args",
+            "type": "Namespace",
+            "description": "",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "None",
+        "module": "general",
+        "ipc_type": "cli",
+        "implementation_hint": "Source: weather.py::cmd_forecast",
+        "generation_status": "ready",
+        "generation_notes": "Invokes the detected CLI entry point.",
+        "manual_steps": [],
+        "impl": {
+          "strategy": "cli_function",
+          "cli_subcommand": "",
+          "cli_entry": "weather.py",
+          "python_module": "",
+          "python_function": "cmd_forecast",
+          "python_import_path": "",
+          "python_class": "",
+          "python_init_params": [],
+          "http_method": "",
+          "http_path": "",
+          "grpc_service": "",
+          "grpc_method": "",
+          "grpc_proto_module": "",
+          "arg_mapping": {
+            "args": {
+              "style": "positional",
+              "position": 0
+            }
+          }
+        }
+      }
+    ],
+    "resources": [
+      {
+        "uri": "app://weather-demo/status",
+        "name": "weather_demo_status",
+        "description": "Current status and version of weather-demo",
+        "mime_type": "application/json",
+        "resource_type": "status"
+      },
+      {
+        "uri": "app://weather-demo/commands",
+        "name": "weather_demo_commands",
+        "description": "Available commands and tools in weather-demo",
+        "mime_type": "application/json",
+        "resource_type": "commands"
+      },
+      {
+        "uri": "docs://weather-demo/tool-index",
+        "name": "weather_demo_tool_index",
+        "description": "Complete index of all weather-demo tools with parameters and usage",
+        "mime_type": "application/json",
+        "resource_type": "docs"
+      },
+      {
+        "uri": "docs://weather-demo/cli_command",
+        "name": "weather_demo_cli_command_docs",
+        "description": "Documentation for weather-demo cli_command capabilities",
+        "mime_type": "application/json",
+        "resource_type": "docs"
+      }
+    ],
+    "prompts": [
+      {
+        "name": "use_weather_demo",
+        "description": "Guide for using weather-demo tools effectively",
+        "arguments": [],
+        "template": "You have access to the weather-demo MCP server with these tools:\n\n- compare: Compare weather between two cities\n- current: Show current weather for a city\n- forecast: Show multi-day forecast for a city\n- cmd_compare: Cmd compare\n- cmd_current: Cmd current\n- cmd_forecast: Cmd forecast\n\nUse the appropriate tool based on the user's request. Always check required parameters before calling a tool."
+      },
+      {
+        "name": "debug_weather_demo",
+        "description": "Diagnose issues with weather-demo operations",
+        "arguments": [
+          {
+            "name": "error_message",
+            "type": "string",
+            "description": "The error to diagnose",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "template": "The user encountered an error while using weather-demo.\n\nError: {{error_message}}\n\nAvailable tools: compare, current, forecast, cmd_compare, cmd_current, cmd_forecast\n\nDiagnose the issue and suggest which tool to use to resolve it."
+      }
+    ],
+    "tool_modules": {
+      "general": [
+        "run_weather_demo",
+        "cmd_compare",
+        "cmd_current",
+        "cmd_forecast"
+      ],
+      "cli_command": [
+        "compare",
+        "current",
+        "forecast"
+      ]
+    },
+    "backend": {
+      "backend_type": "cli",
+      "host": "localhost",
+      "port": 0,
+      "socket_path": "",
+      "command": "python /Users/selfsim/projects/mcp-demo/demos/weather/weather.py",
+      "command_args": [],
+      "env_vars": {},
+      "codebase_path": "/Users/selfsim/projects/mcp-demo/demos/weather",
+      "auth": {
+        "auth_type": "",
+        "api_key_header": "",
+        "api_key_query": "",
+        "env_var_token": "",
+        "env_var_username": "",
+        "env_var_password": ""
+      }
+    },
+    "dependencies": [
+      "mcp>=1.0"
+    ],
+    "python_requires": ">=3.10",
+    "target_install_hint": "",
+    "transport": "stdio",
+    "http_host": "0.0.0.0",
+    "http_port": 8000,
+    "enable_telemetry": false,
+    "generate_agents_md": true,
+    "tool_groups": [],
+    "composed_tools": [],
+    "discovery_endpoint": true
+  },
+  "domain_model": null,
+  "tool_spec": null,
+  "skill_bundle": null,
+  "eval_cases": null,
+  "contract_check_results": null,
+  "generated_files": [
+    "src/mcp_weather_demo/__init__.py",
+    "src/mcp_weather_demo/server.py",
+    "src/mcp_weather_demo/models.py",
+    "src/mcp_weather_demo/state.py",
+    "src/mcp_weather_demo/backend.py",
+    "src/mcp_weather_demo/tools/general.py",
+    "src/mcp_weather_demo/tools/cli_command.py",
+    "src/mcp_weather_demo/tools/__init__.py",
+    "src/mcp_weather_demo/resources.py",
+    "src/mcp_weather_demo/prompts.py",
+    "pyproject.toml",
+    "mcp.json",
+    "README.md",
+    "AGENTS.md"
+  ],
+  "errors": [],
+  "extra_data": null
+}

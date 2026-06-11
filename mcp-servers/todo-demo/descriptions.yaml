@@ -1,0 +1,52 @@
+# Edit tool descriptions below. Run `mcp-anything generate --description` to apply.
+tools:
+  run_todo_demo:
+    description: Run todo-demo with the given command-line arguments
+    parameters:
+      args:
+        description: Command-line arguments to pass to todo-demo (e.g. a URL or flags)
+  add:
+    description: Add a task
+    parameters:
+      text:
+        description: Task description
+  clear:
+    description: Delete all tasks
+    parameters:
+      args:
+        description: Arguments for clear
+  delete:
+    description: Delete a task
+    parameters:
+      id:
+        description: Task ID
+  done:
+    description: Mark a task as done
+    parameters:
+      id:
+        description: Task ID
+  list:
+    description: List all tasks
+    parameters:
+      args:
+        description: Arguments for list
+  cmd_add:
+    description: Cmd add
+    parameters:
+      args:
+        description: ''
+  cmd_clear:
+    description: Cmd clear
+    parameters:
+      args:
+        description: ''
+  cmd_list:
+    description: Cmd list
+    parameters:
+      args:
+        description: ''
+  save_tasks:
+    description: Save tasks
+    parameters:
+      tasks:
+        description: ''

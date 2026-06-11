@@ -1,0 +1,721 @@
+{
+  "version": "0.2.0",
+  "pipeline_mode": "legacy",
+  "codebase_path": "/Users/selfsim/projects/mcp-demo/demos/textutils",
+  "output_dir": "/Users/selfsim/projects/mcp-demo/mcp-servers/textutils-demo",
+  "server_name": "textutils-demo",
+  "completed_phases": [
+    "analyze",
+    "design",
+    "implement",
+    "document",
+    "package"
+  ],
+  "analysis": {
+    "app_name": "textutils-demo",
+    "app_description": "MCP server for textutils-demo (CLI application, with 7 capabilities)",
+    "languages": [
+      "python"
+    ],
+    "files": [
+      {
+        "path": "textutils.py",
+        "language": "python",
+        "size_bytes": 2852,
+        "line_count": 111,
+        "is_entry_point": true,
+        "is_api_surface": true
+      }
+    ],
+    "ipc_mechanisms": [
+      {
+        "ipc_type": "cli",
+        "confidence": 0.9,
+        "evidence": [
+          "textutils.py: argparse import",
+          "textutils.py: ArgumentParser usage",
+          "textutils.py: add_argument call"
+        ],
+        "details": {}
+      }
+    ],
+    "capabilities": [
+      {
+        "name": "palindrome",
+        "description": "check if text is a palindrome",
+        "category": "cli_command",
+        "parameters": [
+          {
+            "name": "text",
+            "type": "string",
+            "description": "Text to check",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "string",
+        "source_file": "textutils.py",
+        "source_function": "",
+        "source_class": "",
+        "init_params": [],
+        "ipc_type": "cli",
+        "http_method": null,
+        "http_path": null
+      },
+      {
+        "name": "checksum",
+        "description": "Compute SHA-256 checksum of text.",
+        "category": "general",
+        "parameters": [
+          {
+            "name": "text",
+            "type": "string",
+            "description": "",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "string",
+        "source_file": "textutils.py",
+        "source_function": "checksum",
+        "source_class": "",
+        "init_params": [],
+        "ipc_type": "cli",
+        "http_method": null,
+        "http_path": null
+      },
+      {
+        "name": "count",
+        "description": "Count characters, words, and lines in text.",
+        "category": "general",
+        "parameters": [
+          {
+            "name": "text",
+            "type": "string",
+            "description": "",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "object",
+        "source_file": "textutils.py",
+        "source_function": "count",
+        "source_class": "",
+        "init_params": [],
+        "ipc_type": "cli",
+        "http_method": null,
+        "http_path": null
+      },
+      {
+        "name": "lowercase",
+        "description": "Convert text to lowercase.",
+        "category": "general",
+        "parameters": [
+          {
+            "name": "text",
+            "type": "string",
+            "description": "",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "string",
+        "source_file": "textutils.py",
+        "source_function": "lowercase",
+        "source_class": "",
+        "init_params": [],
+        "ipc_type": "cli",
+        "http_method": null,
+        "http_path": null
+      },
+      {
+        "name": "reverse",
+        "description": "Reverse the input string.",
+        "category": "general",
+        "parameters": [
+          {
+            "name": "text",
+            "type": "string",
+            "description": "",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "string",
+        "source_file": "textutils.py",
+        "source_function": "reverse",
+        "source_class": "",
+        "init_params": [],
+        "ipc_type": "cli",
+        "http_method": null,
+        "http_path": null
+      },
+      {
+        "name": "slugify",
+        "description": "Convert text to a URL-friendly slug.",
+        "category": "general",
+        "parameters": [
+          {
+            "name": "text",
+            "type": "string",
+            "description": "",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "string",
+        "source_file": "textutils.py",
+        "source_function": "slugify",
+        "source_class": "",
+        "init_params": [],
+        "ipc_type": "cli",
+        "http_method": null,
+        "http_path": null
+      },
+      {
+        "name": "uppercase",
+        "description": "Convert text to uppercase.",
+        "category": "general",
+        "parameters": [
+          {
+            "name": "text",
+            "type": "string",
+            "description": "",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "string",
+        "source_file": "textutils.py",
+        "source_function": "uppercase",
+        "source_class": "",
+        "init_params": [],
+        "ipc_type": "cli",
+        "http_method": null,
+        "http_path": null
+      }
+    ],
+    "primary_ipc": "cli",
+    "entry_points": [
+      "textutils.py"
+    ],
+    "raw_evidence": {}
+  },
+  "design": {
+    "server_name": "textutils-demo",
+    "server_description": "MCP server for textutils-demo (CLI application, with 7 capabilities)",
+    "tools": [
+      {
+        "name": "run_textutils_demo",
+        "description": "Run textutils-demo with the given command-line arguments",
+        "parameters": [
+          {
+            "name": "args",
+            "type": "string",
+            "description": "Command-line arguments to pass to textutils-demo (e.g. a URL or flags)",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "string",
+        "module": "general",
+        "ipc_type": "cli",
+        "implementation_hint": "Run: python textutils.py <args>",
+        "generation_status": "ready",
+        "generation_notes": "Invokes the detected CLI entry point.",
+        "manual_steps": [],
+        "impl": {
+          "strategy": "cli_subcommand",
+          "cli_subcommand": "",
+          "cli_entry": "",
+          "python_module": "",
+          "python_function": "",
+          "python_import_path": "",
+          "python_class": "",
+          "python_init_params": [],
+          "http_method": "",
+          "http_path": "",
+          "grpc_service": "",
+          "grpc_method": "",
+          "grpc_proto_module": "",
+          "arg_mapping": {
+            "args": {
+              "style": "passthrough"
+            }
+          }
+        }
+      },
+      {
+        "name": "palindrome",
+        "description": "check if text is a palindrome",
+        "parameters": [
+          {
+            "name": "text",
+            "type": "string",
+            "description": "Text to check",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "string",
+        "module": "cli_command",
+        "ipc_type": "cli",
+        "implementation_hint": "Source: textutils.py",
+        "generation_status": "ready",
+        "generation_notes": "Invokes the detected CLI entry point.",
+        "manual_steps": [],
+        "impl": {
+          "strategy": "cli_subcommand",
+          "cli_subcommand": "palindrome",
+          "cli_entry": "",
+          "python_module": "",
+          "python_function": "",
+          "python_import_path": "",
+          "python_class": "",
+          "python_init_params": [],
+          "http_method": "",
+          "http_path": "",
+          "grpc_service": "",
+          "grpc_method": "",
+          "grpc_proto_module": "",
+          "arg_mapping": {
+            "text": {
+              "style": "positional",
+              "position": 0
+            }
+          }
+        }
+      },
+      {
+        "name": "checksum",
+        "description": "Compute SHA-256 checksum of text.",
+        "parameters": [
+          {
+            "name": "text",
+            "type": "string",
+            "description": "",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "string",
+        "module": "general",
+        "ipc_type": "cli",
+        "implementation_hint": "Source: textutils.py::checksum",
+        "generation_status": "ready",
+        "generation_notes": "Invokes the detected CLI entry point.",
+        "manual_steps": [],
+        "impl": {
+          "strategy": "cli_function",
+          "cli_subcommand": "",
+          "cli_entry": "textutils.py",
+          "python_module": "",
+          "python_function": "checksum",
+          "python_import_path": "",
+          "python_class": "",
+          "python_init_params": [],
+          "http_method": "",
+          "http_path": "",
+          "grpc_service": "",
+          "grpc_method": "",
+          "grpc_proto_module": "",
+          "arg_mapping": {
+            "text": {
+              "style": "positional",
+              "position": 0
+            }
+          }
+        }
+      },
+      {
+        "name": "count",
+        "description": "Count characters, words, and lines in text.",
+        "parameters": [
+          {
+            "name": "text",
+            "type": "string",
+            "description": "",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "object",
+        "module": "general",
+        "ipc_type": "cli",
+        "implementation_hint": "Source: textutils.py::count",
+        "generation_status": "ready",
+        "generation_notes": "Invokes the detected CLI entry point.",
+        "manual_steps": [],
+        "impl": {
+          "strategy": "cli_function",
+          "cli_subcommand": "",
+          "cli_entry": "textutils.py",
+          "python_module": "",
+          "python_function": "count",
+          "python_import_path": "",
+          "python_class": "",
+          "python_init_params": [],
+          "http_method": "",
+          "http_path": "",
+          "grpc_service": "",
+          "grpc_method": "",
+          "grpc_proto_module": "",
+          "arg_mapping": {
+            "text": {
+              "style": "positional",
+              "position": 0
+            }
+          }
+        }
+      },
+      {
+        "name": "lowercase",
+        "description": "Convert text to lowercase.",
+        "parameters": [
+          {
+            "name": "text",
+            "type": "string",
+            "description": "",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "string",
+        "module": "general",
+        "ipc_type": "cli",
+        "implementation_hint": "Source: textutils.py::lowercase",
+        "generation_status": "ready",
+        "generation_notes": "Invokes the detected CLI entry point.",
+        "manual_steps": [],
+        "impl": {
+          "strategy": "cli_function",
+          "cli_subcommand": "",
+          "cli_entry": "textutils.py",
+          "python_module": "",
+          "python_function": "lowercase",
+          "python_import_path": "",
+          "python_class": "",
+          "python_init_params": [],
+          "http_method": "",
+          "http_path": "",
+          "grpc_service": "",
+          "grpc_method": "",
+          "grpc_proto_module": "",
+          "arg_mapping": {
+            "text": {
+              "style": "positional",
+              "position": 0
+            }
+          }
+        }
+      },
+      {
+        "name": "reverse",
+        "description": "Reverse the input string.",
+        "parameters": [
+          {
+            "name": "text",
+            "type": "string",
+            "description": "",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "string",
+        "module": "general",
+        "ipc_type": "cli",
+        "implementation_hint": "Source: textutils.py::reverse",
+        "generation_status": "ready",
+        "generation_notes": "Invokes the detected CLI entry point.",
+        "manual_steps": [],
+        "impl": {
+          "strategy": "cli_function",
+          "cli_subcommand": "",
+          "cli_entry": "textutils.py",
+          "python_module": "",
+          "python_function": "reverse",
+          "python_import_path": "",
+          "python_class": "",
+          "python_init_params": [],
+          "http_method": "",
+          "http_path": "",
+          "grpc_service": "",
+          "grpc_method": "",
+          "grpc_proto_module": "",
+          "arg_mapping": {
+            "text": {
+              "style": "positional",
+              "position": 0
+            }
+          }
+        }
+      },
+      {
+        "name": "slugify",
+        "description": "Convert text to a URL-friendly slug.",
+        "parameters": [
+          {
+            "name": "text",
+            "type": "string",
+            "description": "",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "string",
+        "module": "general",
+        "ipc_type": "cli",
+        "implementation_hint": "Source: textutils.py::slugify",
+        "generation_status": "ready",
+        "generation_notes": "Invokes the detected CLI entry point.",
+        "manual_steps": [],
+        "impl": {
+          "strategy": "cli_function",
+          "cli_subcommand": "",
+          "cli_entry": "textutils.py",
+          "python_module": "",
+          "python_function": "slugify",
+          "python_import_path": "",
+          "python_class": "",
+          "python_init_params": [],
+          "http_method": "",
+          "http_path": "",
+          "grpc_service": "",
+          "grpc_method": "",
+          "grpc_proto_module": "",
+          "arg_mapping": {
+            "text": {
+              "style": "positional",
+              "position": 0
+            }
+          }
+        }
+      },
+      {
+        "name": "uppercase",
+        "description": "Convert text to uppercase.",
+        "parameters": [
+          {
+            "name": "text",
+            "type": "string",
+            "description": "",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "string",
+        "module": "general",
+        "ipc_type": "cli",
+        "implementation_hint": "Source: textutils.py::uppercase",
+        "generation_status": "ready",
+        "generation_notes": "Invokes the detected CLI entry point.",
+        "manual_steps": [],
+        "impl": {
+          "strategy": "cli_function",
+          "cli_subcommand": "",
+          "cli_entry": "textutils.py",
+          "python_module": "",
+          "python_function": "uppercase",
+          "python_import_path": "",
+          "python_class": "",
+          "python_init_params": [],
+          "http_method": "",
+          "http_path": "",
+          "grpc_service": "",
+          "grpc_method": "",
+          "grpc_proto_module": "",
+          "arg_mapping": {
+            "text": {
+              "style": "positional",
+              "position": 0
+            }
+          }
+        }
+      }
+    ],
+    "resources": [
+      {
+        "uri": "app://textutils-demo/status",
+        "name": "textutils_demo_status",
+        "description": "Current status and version of textutils-demo",
+        "mime_type": "application/json",
+        "resource_type": "status"
+      },
+      {
+        "uri": "app://textutils-demo/commands",
+        "name": "textutils_demo_commands",
+        "description": "Available commands and tools in textutils-demo",
+        "mime_type": "application/json",
+        "resource_type": "commands"
+      },
+      {
+        "uri": "docs://textutils-demo/tool-index",
+        "name": "textutils_demo_tool_index",
+        "description": "Complete index of all textutils-demo tools with parameters and usage",
+        "mime_type": "application/json",
+        "resource_type": "docs"
+      },
+      {
+        "uri": "docs://textutils-demo/cli_command",
+        "name": "textutils_demo_cli_command_docs",
+        "description": "Documentation for textutils-demo cli_command capabilities",
+        "mime_type": "application/json",
+        "resource_type": "docs"
+      }
+    ],
+    "prompts": [
+      {
+        "name": "use_textutils_demo",
+        "description": "Guide for using textutils-demo tools effectively",
+        "arguments": [],
+        "template": "You have access to the textutils-demo MCP server with these tools:\n\n- palindrome: check if text is a palindrome\n- checksum: Compute SHA-256 checksum of text.\n- count: Count characters, words, and lines in text.\n- lowercase: Convert text to lowercase.\n- reverse: Reverse the input string.\n- slugify: Convert text to a URL-friendly slug.\n- uppercase: Convert text to uppercase.\n\nUse the appropriate tool based on the user's request. Always check required parameters before calling a tool."
+      },
+      {
+        "name": "debug_textutils_demo",
+        "description": "Diagnose issues with textutils-demo operations",
+        "arguments": [
+          {
+            "name": "error_message",
+            "type": "string",
+            "description": "The error to diagnose",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "template": "The user encountered an error while using textutils-demo.\n\nError: {{error_message}}\n\nAvailable tools: palindrome, checksum, count, lowercase, reverse, slugify, uppercase\n\nDiagnose the issue and suggest which tool to use to resolve it."
+      }
+    ],
+    "tool_modules": {
+      "general": [
+        "run_textutils_demo",
+        "checksum",
+        "count",
+        "lowercase",
+        "reverse",
+        "slugify",
+        "uppercase"
+      ],
+      "cli_command": [
+        "palindrome"
+      ]
+    },
+    "backend": {
+      "backend_type": "cli",
+      "host": "localhost",
+      "port": 0,
+      "socket_path": "",
+      "command": "python /Users/selfsim/projects/mcp-demo/demos/textutils/textutils.py",
+      "command_args": [],
+      "env_vars": {},
+      "codebase_path": "/Users/selfsim/projects/mcp-demo/demos/textutils",
+      "auth": {
+        "auth_type": "",
+        "api_key_header": "",
+        "api_key_query": "",
+        "env_var_token": "",
+        "env_var_username": "",
+        "env_var_password": ""
+      }
+    },
+    "dependencies": [
+      "mcp>=1.0"
+    ],
+    "python_requires": ">=3.10",
+    "target_install_hint": "",
+    "transport": "stdio",
+    "http_host": "0.0.0.0",
+    "http_port": 8000,
+    "enable_telemetry": false,
+    "generate_agents_md": true,
+    "tool_groups": [],
+    "composed_tools": [],
+    "discovery_endpoint": true
+  },
+  "domain_model": null,
+  "tool_spec": null,
+  "skill_bundle": null,
+  "eval_cases": null,
+  "contract_check_results": null,
+  "generated_files": [
+    "src/mcp_textutils_demo/__init__.py",
+    "src/mcp_textutils_demo/server.py",
+    "src/mcp_textutils_demo/models.py",
+    "src/mcp_textutils_demo/state.py",
+    "src/mcp_textutils_demo/backend.py",
+    "src/mcp_textutils_demo/tools/general.py",
+    "src/mcp_textutils_demo/tools/cli_command.py",
+    "src/mcp_textutils_demo/tools/__init__.py",
+    "src/mcp_textutils_demo/resources.py",
+    "src/mcp_textutils_demo/prompts.py",
+    "pyproject.toml",
+    "mcp.json",
+    "README.md",
+    "AGENTS.md"
+  ],
+  "errors": [],
+  "extra_data": null
+}

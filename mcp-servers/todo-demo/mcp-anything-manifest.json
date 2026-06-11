@@ -1,0 +1,873 @@
+{
+  "version": "0.2.0",
+  "pipeline_mode": "legacy",
+  "codebase_path": "/Users/selfsim/projects/mcp-demo/demos/todo",
+  "output_dir": "/Users/selfsim/projects/mcp-demo/mcp-servers/todo-demo",
+  "server_name": "todo-demo",
+  "completed_phases": [
+    "analyze",
+    "design",
+    "implement",
+    "document",
+    "package"
+  ],
+  "analysis": {
+    "app_name": "todo-demo",
+    "app_description": "MCP server for todo-demo (CLI application, with 9 capabilities)",
+    "languages": [
+      "python"
+    ],
+    "files": [
+      {
+        "path": "todo.py",
+        "language": "python",
+        "size_bytes": 2844,
+        "line_count": 113,
+        "is_entry_point": true,
+        "is_api_surface": true
+      }
+    ],
+    "ipc_mechanisms": [
+      {
+        "ipc_type": "cli",
+        "confidence": 0.9,
+        "evidence": [
+          "todo.py: argparse import",
+          "todo.py: ArgumentParser usage",
+          "todo.py: add_argument call"
+        ],
+        "details": {}
+      }
+    ],
+    "capabilities": [
+      {
+        "name": "add",
+        "description": "Add a task",
+        "category": "cli_command",
+        "parameters": [
+          {
+            "name": "text",
+            "type": "string",
+            "description": "Task description",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "string",
+        "source_file": "todo.py",
+        "source_function": "",
+        "source_class": "",
+        "init_params": [],
+        "ipc_type": "cli",
+        "http_method": null,
+        "http_path": null
+      },
+      {
+        "name": "clear",
+        "description": "Delete all tasks",
+        "category": "cli_command",
+        "parameters": [
+          {
+            "name": "args",
+            "type": "string",
+            "description": "Arguments for clear",
+            "required": false,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "string",
+        "source_file": "todo.py",
+        "source_function": "",
+        "source_class": "",
+        "init_params": [],
+        "ipc_type": "cli",
+        "http_method": null,
+        "http_path": null
+      },
+      {
+        "name": "delete",
+        "description": "Delete a task",
+        "category": "cli_command",
+        "parameters": [
+          {
+            "name": "id",
+            "type": "integer",
+            "description": "Task ID",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "string",
+        "source_file": "todo.py",
+        "source_function": "",
+        "source_class": "",
+        "init_params": [],
+        "ipc_type": "cli",
+        "http_method": null,
+        "http_path": null
+      },
+      {
+        "name": "done",
+        "description": "Mark a task as done",
+        "category": "cli_command",
+        "parameters": [
+          {
+            "name": "id",
+            "type": "integer",
+            "description": "Task ID",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "string",
+        "source_file": "todo.py",
+        "source_function": "",
+        "source_class": "",
+        "init_params": [],
+        "ipc_type": "cli",
+        "http_method": null,
+        "http_path": null
+      },
+      {
+        "name": "list",
+        "description": "List all tasks",
+        "category": "cli_command",
+        "parameters": [
+          {
+            "name": "args",
+            "type": "string",
+            "description": "Arguments for list",
+            "required": false,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "string",
+        "source_file": "todo.py",
+        "source_function": "",
+        "source_class": "",
+        "init_params": [],
+        "ipc_type": "cli",
+        "http_method": null,
+        "http_path": null
+      },
+      {
+        "name": "cmd_add",
+        "description": "Cmd add",
+        "category": "general",
+        "parameters": [
+          {
+            "name": "args",
+            "type": "string",
+            "description": "",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "string",
+        "source_file": "todo.py",
+        "source_function": "cmd_add",
+        "source_class": "",
+        "init_params": [],
+        "ipc_type": "cli",
+        "http_method": null,
+        "http_path": null
+      },
+      {
+        "name": "cmd_clear",
+        "description": "Cmd clear",
+        "category": "general",
+        "parameters": [
+          {
+            "name": "args",
+            "type": "string",
+            "description": "",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "string",
+        "source_file": "todo.py",
+        "source_function": "cmd_clear",
+        "source_class": "",
+        "init_params": [],
+        "ipc_type": "cli",
+        "http_method": null,
+        "http_path": null
+      },
+      {
+        "name": "cmd_list",
+        "description": "Cmd list",
+        "category": "general",
+        "parameters": [
+          {
+            "name": "args",
+            "type": "string",
+            "description": "",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "string",
+        "source_file": "todo.py",
+        "source_function": "cmd_list",
+        "source_class": "",
+        "init_params": [],
+        "ipc_type": "cli",
+        "http_method": null,
+        "http_path": null
+      },
+      {
+        "name": "save_tasks",
+        "description": "Save tasks",
+        "category": "file_ops",
+        "parameters": [
+          {
+            "name": "tasks",
+            "type": "string",
+            "description": "",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "string",
+        "source_file": "todo.py",
+        "source_function": "save_tasks",
+        "source_class": "",
+        "init_params": [],
+        "ipc_type": "cli",
+        "http_method": null,
+        "http_path": null
+      }
+    ],
+    "primary_ipc": "cli",
+    "entry_points": [
+      "todo.py"
+    ],
+    "raw_evidence": {}
+  },
+  "design": {
+    "server_name": "todo-demo",
+    "server_description": "MCP server for todo-demo (CLI application, with 9 capabilities)",
+    "tools": [
+      {
+        "name": "run_todo_demo",
+        "description": "Run todo-demo with the given command-line arguments",
+        "parameters": [
+          {
+            "name": "args",
+            "type": "string",
+            "description": "Command-line arguments to pass to todo-demo (e.g. a URL or flags)",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "string",
+        "module": "general",
+        "ipc_type": "cli",
+        "implementation_hint": "Run: python todo.py <args>",
+        "generation_status": "ready",
+        "generation_notes": "Invokes the detected CLI entry point.",
+        "manual_steps": [],
+        "impl": {
+          "strategy": "cli_subcommand",
+          "cli_subcommand": "",
+          "cli_entry": "",
+          "python_module": "",
+          "python_function": "",
+          "python_import_path": "",
+          "python_class": "",
+          "python_init_params": [],
+          "http_method": "",
+          "http_path": "",
+          "grpc_service": "",
+          "grpc_method": "",
+          "grpc_proto_module": "",
+          "arg_mapping": {
+            "args": {
+              "style": "passthrough"
+            }
+          }
+        }
+      },
+      {
+        "name": "add",
+        "description": "Add a task",
+        "parameters": [
+          {
+            "name": "text",
+            "type": "string",
+            "description": "Task description",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "string",
+        "module": "cli_command",
+        "ipc_type": "cli",
+        "implementation_hint": "Source: todo.py",
+        "generation_status": "ready",
+        "generation_notes": "Invokes the detected CLI entry point.",
+        "manual_steps": [],
+        "impl": {
+          "strategy": "cli_subcommand",
+          "cli_subcommand": "add",
+          "cli_entry": "",
+          "python_module": "",
+          "python_function": "",
+          "python_import_path": "",
+          "python_class": "",
+          "python_init_params": [],
+          "http_method": "",
+          "http_path": "",
+          "grpc_service": "",
+          "grpc_method": "",
+          "grpc_proto_module": "",
+          "arg_mapping": {
+            "text": {
+              "style": "positional",
+              "position": 0
+            }
+          }
+        }
+      },
+      {
+        "name": "clear",
+        "description": "Delete all tasks",
+        "parameters": [
+          {
+            "name": "args",
+            "type": "string",
+            "description": "Arguments for clear",
+            "required": false,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "string",
+        "module": "cli_command",
+        "ipc_type": "cli",
+        "implementation_hint": "Source: todo.py",
+        "generation_status": "ready",
+        "generation_notes": "Invokes the detected CLI entry point.",
+        "manual_steps": [],
+        "impl": {
+          "strategy": "cli_subcommand",
+          "cli_subcommand": "clear",
+          "cli_entry": "",
+          "python_module": "",
+          "python_function": "",
+          "python_import_path": "",
+          "python_class": "",
+          "python_init_params": [],
+          "http_method": "",
+          "http_path": "",
+          "grpc_service": "",
+          "grpc_method": "",
+          "grpc_proto_module": "",
+          "arg_mapping": {
+            "args": {
+              "style": "passthrough"
+            }
+          }
+        }
+      },
+      {
+        "name": "delete",
+        "description": "Delete a task",
+        "parameters": [
+          {
+            "name": "id",
+            "type": "integer",
+            "description": "Task ID",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "string",
+        "module": "cli_command",
+        "ipc_type": "cli",
+        "implementation_hint": "Source: todo.py",
+        "generation_status": "ready",
+        "generation_notes": "Invokes the detected CLI entry point.",
+        "manual_steps": [],
+        "impl": {
+          "strategy": "cli_subcommand",
+          "cli_subcommand": "delete",
+          "cli_entry": "",
+          "python_module": "",
+          "python_function": "",
+          "python_import_path": "",
+          "python_class": "",
+          "python_init_params": [],
+          "http_method": "",
+          "http_path": "",
+          "grpc_service": "",
+          "grpc_method": "",
+          "grpc_proto_module": "",
+          "arg_mapping": {
+            "id": {
+              "style": "positional",
+              "position": 0
+            }
+          }
+        }
+      },
+      {
+        "name": "done",
+        "description": "Mark a task as done",
+        "parameters": [
+          {
+            "name": "id",
+            "type": "integer",
+            "description": "Task ID",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "string",
+        "module": "cli_command",
+        "ipc_type": "cli",
+        "implementation_hint": "Source: todo.py",
+        "generation_status": "ready",
+        "generation_notes": "Invokes the detected CLI entry point.",
+        "manual_steps": [],
+        "impl": {
+          "strategy": "cli_subcommand",
+          "cli_subcommand": "done",
+          "cli_entry": "",
+          "python_module": "",
+          "python_function": "",
+          "python_import_path": "",
+          "python_class": "",
+          "python_init_params": [],
+          "http_method": "",
+          "http_path": "",
+          "grpc_service": "",
+          "grpc_method": "",
+          "grpc_proto_module": "",
+          "arg_mapping": {
+            "id": {
+              "style": "positional",
+              "position": 0
+            }
+          }
+        }
+      },
+      {
+        "name": "list",
+        "description": "List all tasks",
+        "parameters": [
+          {
+            "name": "args",
+            "type": "string",
+            "description": "Arguments for list",
+            "required": false,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "string",
+        "module": "cli_command",
+        "ipc_type": "cli",
+        "implementation_hint": "Source: todo.py",
+        "generation_status": "ready",
+        "generation_notes": "Invokes the detected CLI entry point.",
+        "manual_steps": [],
+        "impl": {
+          "strategy": "cli_subcommand",
+          "cli_subcommand": "list",
+          "cli_entry": "",
+          "python_module": "",
+          "python_function": "",
+          "python_import_path": "",
+          "python_class": "",
+          "python_init_params": [],
+          "http_method": "",
+          "http_path": "",
+          "grpc_service": "",
+          "grpc_method": "",
+          "grpc_proto_module": "",
+          "arg_mapping": {
+            "args": {
+              "style": "passthrough"
+            }
+          }
+        }
+      },
+      {
+        "name": "cmd_add",
+        "description": "Cmd add",
+        "parameters": [
+          {
+            "name": "args",
+            "type": "string",
+            "description": "",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "string",
+        "module": "general",
+        "ipc_type": "cli",
+        "implementation_hint": "Source: todo.py::cmd_add",
+        "generation_status": "ready",
+        "generation_notes": "Invokes the detected CLI entry point.",
+        "manual_steps": [],
+        "impl": {
+          "strategy": "cli_function",
+          "cli_subcommand": "",
+          "cli_entry": "todo.py",
+          "python_module": "",
+          "python_function": "cmd_add",
+          "python_import_path": "",
+          "python_class": "",
+          "python_init_params": [],
+          "http_method": "",
+          "http_path": "",
+          "grpc_service": "",
+          "grpc_method": "",
+          "grpc_proto_module": "",
+          "arg_mapping": {
+            "args": {
+              "style": "positional",
+              "position": 0
+            }
+          }
+        }
+      },
+      {
+        "name": "cmd_clear",
+        "description": "Cmd clear",
+        "parameters": [
+          {
+            "name": "args",
+            "type": "string",
+            "description": "",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "string",
+        "module": "general",
+        "ipc_type": "cli",
+        "implementation_hint": "Source: todo.py::cmd_clear",
+        "generation_status": "ready",
+        "generation_notes": "Invokes the detected CLI entry point.",
+        "manual_steps": [],
+        "impl": {
+          "strategy": "cli_function",
+          "cli_subcommand": "",
+          "cli_entry": "todo.py",
+          "python_module": "",
+          "python_function": "cmd_clear",
+          "python_import_path": "",
+          "python_class": "",
+          "python_init_params": [],
+          "http_method": "",
+          "http_path": "",
+          "grpc_service": "",
+          "grpc_method": "",
+          "grpc_proto_module": "",
+          "arg_mapping": {
+            "args": {
+              "style": "positional",
+              "position": 0
+            }
+          }
+        }
+      },
+      {
+        "name": "cmd_list",
+        "description": "Cmd list",
+        "parameters": [
+          {
+            "name": "args",
+            "type": "string",
+            "description": "",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "string",
+        "module": "general",
+        "ipc_type": "cli",
+        "implementation_hint": "Source: todo.py::cmd_list",
+        "generation_status": "ready",
+        "generation_notes": "Invokes the detected CLI entry point.",
+        "manual_steps": [],
+        "impl": {
+          "strategy": "cli_function",
+          "cli_subcommand": "",
+          "cli_entry": "todo.py",
+          "python_module": "",
+          "python_function": "cmd_list",
+          "python_import_path": "",
+          "python_class": "",
+          "python_init_params": [],
+          "http_method": "",
+          "http_path": "",
+          "grpc_service": "",
+          "grpc_method": "",
+          "grpc_proto_module": "",
+          "arg_mapping": {
+            "args": {
+              "style": "positional",
+              "position": 0
+            }
+          }
+        }
+      },
+      {
+        "name": "save_tasks",
+        "description": "Save tasks",
+        "parameters": [
+          {
+            "name": "tasks",
+            "type": "string",
+            "description": "",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "return_type": "string",
+        "module": "file_ops",
+        "ipc_type": "cli",
+        "implementation_hint": "Source: todo.py::save_tasks",
+        "generation_status": "ready",
+        "generation_notes": "Invokes the detected CLI entry point.",
+        "manual_steps": [],
+        "impl": {
+          "strategy": "cli_function",
+          "cli_subcommand": "",
+          "cli_entry": "todo.py",
+          "python_module": "",
+          "python_function": "save_tasks",
+          "python_import_path": "",
+          "python_class": "",
+          "python_init_params": [],
+          "http_method": "",
+          "http_path": "",
+          "grpc_service": "",
+          "grpc_method": "",
+          "grpc_proto_module": "",
+          "arg_mapping": {
+            "tasks": {
+              "style": "positional",
+              "position": 0
+            }
+          }
+        }
+      }
+    ],
+    "resources": [
+      {
+        "uri": "app://todo-demo/status",
+        "name": "todo_demo_status",
+        "description": "Current status and version of todo-demo",
+        "mime_type": "application/json",
+        "resource_type": "status"
+      },
+      {
+        "uri": "app://todo-demo/commands",
+        "name": "todo_demo_commands",
+        "description": "Available commands and tools in todo-demo",
+        "mime_type": "application/json",
+        "resource_type": "commands"
+      },
+      {
+        "uri": "docs://todo-demo/tool-index",
+        "name": "todo_demo_tool_index",
+        "description": "Complete index of all todo-demo tools with parameters and usage",
+        "mime_type": "application/json",
+        "resource_type": "docs"
+      },
+      {
+        "uri": "docs://todo-demo/cli_command",
+        "name": "todo_demo_cli_command_docs",
+        "description": "Documentation for todo-demo cli_command capabilities",
+        "mime_type": "application/json",
+        "resource_type": "docs"
+      },
+      {
+        "uri": "docs://todo-demo/file_ops",
+        "name": "todo_demo_file_ops_docs",
+        "description": "Documentation for todo-demo file_ops capabilities",
+        "mime_type": "application/json",
+        "resource_type": "docs"
+      }
+    ],
+    "prompts": [
+      {
+        "name": "use_todo_demo",
+        "description": "Guide for using todo-demo tools effectively",
+        "arguments": [],
+        "template": "You have access to the todo-demo MCP server with these tools:\n\n- add: Add a task\n- clear: Delete all tasks\n- delete: Delete a task\n- done: Mark a task as done\n- list: List all tasks\n- cmd_add: Cmd add\n- cmd_clear: Cmd clear\n- cmd_list: Cmd list\n- save_tasks: Save tasks\n\nUse the appropriate tool based on the user's request. Always check required parameters before calling a tool."
+      },
+      {
+        "name": "debug_todo_demo",
+        "description": "Diagnose issues with todo-demo operations",
+        "arguments": [
+          {
+            "name": "error_message",
+            "type": "string",
+            "description": "The error to diagnose",
+            "required": true,
+            "default": null,
+            "enum_values": null,
+            "properties": null,
+            "original_type": null,
+            "location": ""
+          }
+        ],
+        "template": "The user encountered an error while using todo-demo.\n\nError: {{error_message}}\n\nAvailable tools: add, clear, delete, done, list, cmd_add, cmd_clear, cmd_list, save_tasks\n\nDiagnose the issue and suggest which tool to use to resolve it."
+      }
+    ],
+    "tool_modules": {
+      "general": [
+        "run_todo_demo",
+        "cmd_add",
+        "cmd_clear",
+        "cmd_list"
+      ],
+      "cli_command": [
+        "add",
+        "clear",
+        "delete",
+        "done",
+        "list"
+      ],
+      "file_ops": [
+        "save_tasks"
+      ]
+    },
+    "backend": {
+      "backend_type": "cli",
+      "host": "localhost",
+      "port": 0,
+      "socket_path": "",
+      "command": "python /Users/selfsim/projects/mcp-demo/demos/todo/todo.py",
+      "command_args": [],
+      "env_vars": {},
+      "codebase_path": "/Users/selfsim/projects/mcp-demo/demos/todo",
+      "auth": {
+        "auth_type": "",
+        "api_key_header": "",
+        "api_key_query": "",
+        "env_var_token": "",
+        "env_var_username": "",
+        "env_var_password": ""
+      }
+    },
+    "dependencies": [
+      "mcp>=1.0"
+    ],
+    "python_requires": ">=3.10",
+    "target_install_hint": "",
+    "transport": "stdio",
+    "http_host": "0.0.0.0",
+    "http_port": 8000,
+    "enable_telemetry": false,
+    "generate_agents_md": true,
+    "tool_groups": [],
+    "composed_tools": [],
+    "discovery_endpoint": true
+  },
+  "domain_model": null,
+  "tool_spec": null,
+  "skill_bundle": null,
+  "eval_cases": null,
+  "contract_check_results": null,
+  "generated_files": [
+    "src/mcp_todo_demo/__init__.py",
+    "src/mcp_todo_demo/server.py",
+    "src/mcp_todo_demo/models.py",
+    "src/mcp_todo_demo/state.py",
+    "src/mcp_todo_demo/backend.py",
+    "src/mcp_todo_demo/tools/general.py",
+    "src/mcp_todo_demo/tools/cli_command.py",
+    "src/mcp_todo_demo/tools/file_ops.py",
+    "src/mcp_todo_demo/tools/__init__.py",
+    "src/mcp_todo_demo/resources.py",
+    "src/mcp_todo_demo/prompts.py",
+    "pyproject.toml",
+    "mcp.json",
+    "README.md",
+    "AGENTS.md"
+  ],
+  "errors": [],
+  "extra_data": null
+}

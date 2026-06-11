@@ -1,0 +1,43 @@
+{
+  "name": "rgvai-mcp-demo",
+  "version": "1.0.0",
+  "description": "RGV AI Coalition MCP Demo Suite — 4 example apps that showcase mcp-anything wrapping any CLI tool as an MCP server",
+  "keywords": ["mcp", "model-context-protocol", "demo", "workshop", "rgv-ai", "calculator", "todo", "weather", "text-utils"],
+  "homepage": "https://github.com/jlicerio/rgvai-mcp-demo",
+  "bugs": { "url": "https://github.com/jlicerio/rgvai-mcp-demo/issues" },
+  "license": "MIT",
+  "author": "RGV AI Coalition",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jlicerio/rgvai-mcp-demo.git"
+  },
+  "type": "module",
+  "bin": {
+    "mcp-demo": "./bin/mcp-demo.js"
+  },
+  "files": [
+    "bin/",
+    "demos/",
+    "mcp-servers/",
+    "examples/",
+    "README.md",
+    "package.json"
+  ],
+  "scripts": {
+    "demo": "node bin/mcp-demo.js",
+    "demo:calc": "python3 demos/calculator/calculator.py --help",
+    "demo:todo": "python3 demos/todo/todo.py --help",
+    "demo:weather": "python3 demos/weather/weather.py --help",
+    "demo:text": "python3 demos/textutils/textutils.py --help",
+    "generate": "node bin/generate-all.js",
+    "start:calc": "npx mcp-anything serve mcp-servers/calculator-demo",
+    "start:todo": "npx mcp-anything serve mcp-servers/todo-demo",
+    "start:weather": "npx mcp-anything serve mcp-servers/weather-demo",
+    "start:text": "npx mcp-anything serve mcp-servers/textutils-demo"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "os": ["darwin", "linux"],
+  "preferUnplugged": true
+}

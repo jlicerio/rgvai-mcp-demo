@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "calculator-demo": {
+      "command": "mcp-anything",
+      "args": [
+        "serve",
+        "/Users/selfsim/projects/mcp-demo/mcp-servers/calculator-demo"
+      ]
+    }
+  }
+}

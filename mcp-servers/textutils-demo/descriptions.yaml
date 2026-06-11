@@ -1,0 +1,43 @@
+# Edit tool descriptions below. Run `mcp-anything generate --description` to apply.
+tools:
+  run_textutils_demo:
+    description: Run textutils-demo with the given command-line arguments
+    parameters:
+      args:
+        description: Command-line arguments to pass to textutils-demo (e.g. a URL
+          or flags)
+  palindrome:
+    description: check if text is a palindrome
+    parameters:
+      text:
+        description: Text to check
+  checksum:
+    description: Compute SHA-256 checksum of text.
+    parameters:
+      text:
+        description: ''
+  count:
+    description: Count characters, words, and lines in text.
+    parameters:
+      text:
+        description: ''
+  lowercase:
+    description: Convert text to lowercase.
+    parameters:
+      text:
+        description: ''
+  reverse:
+    description: Reverse the input string.
+    parameters:
+      text:
+        description: ''
+  slugify:
+    description: Convert text to a URL-friendly slug.
+    parameters:
+      text:
+        description: ''
+  uppercase:
+    description: Convert text to uppercase.
+    parameters:
+      text:
+        description: ''

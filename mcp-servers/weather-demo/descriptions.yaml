@@ -1,0 +1,42 @@
+# Edit tool descriptions below. Run `mcp-anything generate --description` to apply.
+tools:
+  run_weather_demo:
+    description: Run weather-demo with the given command-line arguments
+    parameters:
+      args:
+        description: Command-line arguments to pass to weather-demo (e.g. a URL or
+          flags)
+  compare:
+    description: Compare weather between two cities
+    parameters:
+      city1:
+        description: First city
+      city2:
+        description: Second city
+  current:
+    description: Show current weather for a city
+    parameters:
+      city:
+        description: City name
+  forecast:
+    description: Show multi-day forecast for a city
+    parameters:
+      city:
+        description: City name
+      days:
+        description: 'Number of forecast days (default: 5)'
+  cmd_compare:
+    description: Cmd compare
+    parameters:
+      args:
+        description: ''
+  cmd_current:
+    description: Cmd current
+    parameters:
+      args:
+        description: ''
+  cmd_forecast:
+    description: Cmd forecast
+    parameters:
+      args:
+        description: ''

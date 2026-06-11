@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "textutils-demo": {
+      "command": "mcp-anything",
+      "args": [
+        "serve",
+        "/Users/selfsim/projects/mcp-demo/mcp-servers/textutils-demo"
+      ]
+    }
+  }
+}
